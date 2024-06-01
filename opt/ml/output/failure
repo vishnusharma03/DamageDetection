@@ -1,0 +1,29 @@
+Exception during training: Dataset 'opt/ml/input/data/training/data.yaml' error ❌ 
+Dataset 'opt/ml/input/data/training/data.yaml' images not found ⚠️, missing path '/home/vishnusharma7/Damage101/datasets/opt/ml/input/data/training/valid/images'
+Note dataset download directory is '/home/vishnusharma7/Damage101/datasets'. You can update this in '/home/vishnusharma7/.config/Ultralytics/settings.yaml'
+Traceback (most recent call last):
+  File "/home/vishnusharma7/Damage101/env/lib/python3.11/site-packages/ultralytics/engine/trainer.py", line 517, in get_dataset
+    data = check_det_dataset(self.args.data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vishnusharma7/Damage101/env/lib/python3.11/site-packages/ultralytics/data/utils.py", line 329, in check_det_dataset
+    raise FileNotFoundError(m)
+FileNotFoundError: 
+Dataset 'opt/ml/input/data/training/data.yaml' images not found ⚠️, missing path '/home/vishnusharma7/Damage101/datasets/opt/ml/input/data/training/valid/images'
+Note dataset download directory is '/home/vishnusharma7/Damage101/datasets'. You can update this in '/home/vishnusharma7/.config/Ultralytics/settings.yaml'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/vishnusharma7/Damage101/container/train", line 63, in train
+    model.train(**train_args)
+  File "/home/vishnusharma7/Damage101/env/lib/python3.11/site-packages/ultralytics/engine/model.py", line 655, in train
+    self.trainer = (trainer or self._smart_load("trainer"))(overrides=args, _callbacks=self.callbacks)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vishnusharma7/Damage101/env/lib/python3.11/site-packages/ultralytics/engine/trainer.py", line 130, in __init__
+    self.trainset, self.testset = self.get_dataset()
+                                  ^^^^^^^^^^^^^^^^^^
+  File "/home/vishnusharma7/Damage101/env/lib/python3.11/site-packages/ultralytics/engine/trainer.py", line 521, in get_dataset
+    raise RuntimeError(emojis(f"Dataset '{clean_url(self.args.data)}' error ❌ {e}")) from e
+RuntimeError: Dataset 'opt/ml/input/data/training/data.yaml' error ❌ 
+Dataset 'opt/ml/input/data/training/data.yaml' images not found ⚠️, missing path '/home/vishnusharma7/Damage101/datasets/opt/ml/input/data/training/valid/images'
+Note dataset download directory is '/home/vishnusharma7/Damage101/datasets'. You can update this in '/home/vishnusharma7/.config/Ultralytics/settings.yaml'

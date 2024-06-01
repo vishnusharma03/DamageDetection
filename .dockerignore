@@ -1,0 +1,4 @@
+env/
+opt/ml/input/data/training/
+datasets/
+yolov8n.pt
