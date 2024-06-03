@@ -21,23 +21,37 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
          libssl-dev \
          libbz2-dev \
          liblzma-dev \
+         htop \
+         nano \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and install Python 3.12.2
-RUN wget https://www.python.org/ftp/python/3.12.2/Python-3.12.2.tgz && \
-    tar xvf Python-3.12.2.tgz && \
-    cd Python-3.12.2 && \
+# RUN wget https://www.python.org/ftp/python/3.12.2/Python-3.12.2.tgz && \
+#     tar xvf Python-3.12.2.tgz && \
+#     cd Python-3.12.2 && \
+#     ./configure && \
+#     make && \
+#     make install && \
+#     cd .. && \
+#     rm -rf Python-3.12.2* && \
+#     ln -s /usr/local/bin/python3.12 /usr/local/bin/python && \
+#     ln -s /usr/local/bin/pip3 /usr/local/bin/pip
+
+RUN wget https://www.python.org/ftp/python/3.11.7/Python-3.11.7.tgz && \
+    tar xvf Python-3.11.7.tgz && \
+    cd Python-3.11.7 && \
     ./configure && \
     make && \
     make install && \
     cd .. && \
-    rm -rf Python-3.12.2* && \
-    ln -s /usr/local/bin/python3.12 /usr/local/bin/python && \
-    ln -s /usr/local/bin/pip3 /usr/local/bin/pip
+    rm -rf Python-3.11.7* && \
+    ln -s /usr/local/bin/python3.11 /usr/local/bin/python && \
+    ln -s /usr/local/bin/pip3.11 /usr/local/bin/pip
+
 
 # Install required Python packages
-RUN pip --no-cache-dir install opencv-python==4.9.0.80 ultralytics flask gunicorn
-RUN mkdir /datasets
+RUN pip --no-cache-dir install opencv-python==4.9.0.80 ultralytics flask gunicorn torch torchvision
+# RUN mkdir /datasets
 # Set environment variables
 ENV PYTHONUNBUFFERED=TRUE
 ENV PYTHONDONTWRITEBYTECODE=TRUE

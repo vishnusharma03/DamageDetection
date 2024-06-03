@@ -11,7 +11,7 @@ import traceback
 
 # These are the paths to where SageMaker mounts interesting things in your container.
 
-prefix = '/opt/ml/' # This line is working on wsl, but it would not work inside container, use /opt/ml/
+prefix = '/opt/ml/' # works on wsl, use /opt/ml/ for container
 
 input_path = prefix + 'input/data'
 output_path = os.path.join(prefix, 'output')
@@ -37,7 +37,7 @@ def train():
         workers = int(trainingParams.get('num_workers', "8"))
         resume = trainingParams.get('resume', True)
         imgsiz = int(trainingParams.get('imgsize', "614"))
-        dataPath = 'datasets/data.yaml'
+        dataPath = '/opt/ml/input/data/training/data.yaml'
         batch_size = int(trainingParams.get('batch', "8"))
 
 
