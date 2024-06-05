@@ -3,7 +3,6 @@
     "imgsize": 640,
     "batch": 1,
     "num_workers": 8,
-    "key": "779ff059ec8121d7e1fe92596ebda83a794f20d1",
     "resume": "True",
     "gpu": "gpu"
 }

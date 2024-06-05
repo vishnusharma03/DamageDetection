@@ -1,15 +1,18 @@
 #!/usr/bin/env python
 
-
 from __future__ import print_function
+
 import json
 from ultralytics import YOLO
 import torch
 import os
 import sys
 import traceback
+from extract import extraction, delete_files
 
 # These are the paths to where SageMaker mounts interesting things in your container.
+
+path = '/opt/ml/input/data/training/'
 
 prefix = '/opt/ml/' # works on wsl, use /opt/ml/ for container
 
@@ -32,11 +35,11 @@ def train():
         with open(param_path, 'r') as tc:
             trainingParams = json.load(tc)
 
-        epoc = int(trainingParams.get('epochs', "2"))
+        epoc = int(trainingParams.get('epochs', "10"))
         gpu = trainingParams.get('gpu', 'gpu')
         workers = int(trainingParams.get('num_workers', "8"))
         resume = trainingParams.get('resume', True)
-        imgsiz = int(trainingParams.get('imgsize', "614"))
+        imgsiz = int(trainingParams.get('imgsize', "640"))
         dataPath = '/opt/ml/input/data/training/data.yaml'
         batch_size = int(trainingParams.get('batch', "8"))
 
@@ -87,10 +90,14 @@ def train():
 
     finally:
         torch.cuda.empty_cache()
+        delete_files(path)
 
 
 if __name__ == '__main__':
-    train()
+    extraction(path)
 
+    train()
+    
     # A zero exit code causes the job to be marked a Succeeded.
     sys.exit(0)
+

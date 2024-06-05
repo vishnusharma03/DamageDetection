@@ -7,7 +7,7 @@
 # machine and combined with the account and region to form the repository name for ECR.
 image=$1
 
-if [ "$image" == "" ]
+if [ -z "$image" ] || "$image" == "damagedetection" ]
 then
     echo "Usage: $0 <image-name>"
     exit 1
