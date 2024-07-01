@@ -23,6 +23,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
          liblzma-dev \
          htop \
          nano \
+         curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and install Python 3.12.2
@@ -63,4 +64,10 @@ COPY opt/ml /opt/ml
 
 WORKDIR /opt/program
 
+ENTRYPOINT ["train"]
 
+# Optional default command (can be overridden at runtime)
+CMD ["train"]
+
+HEALTHCHECK --interval=30s --timeout=30s --start-period=10s --retries=3 \
+  CMD curl --fail http://localhost:80/ping || exit 1

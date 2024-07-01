@@ -34,7 +34,7 @@ class Prediction(object):
     def get_model(cls):
         """Get the model object for this instance, loading it if it's not already loaded."""
         if cls.model is None:
-            cls.model = YOLO(os.path.join(model_path, "train", "weights", "best.pt"))
+            cls.model = YOLO('/opt/ml/model/train/weights/best.pt')
         return cls.model
 
     @classmethod

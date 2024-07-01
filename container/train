@@ -45,7 +45,7 @@ def train():
 
 
         # Load a pretrained YOLO model (recommended for training)
-        model = YOLO('yolov8n.pt')
+        model = YOLO('/opt/ml/model/train/weights/best.pt')
 
         torch.cuda.empty_cache()
 
