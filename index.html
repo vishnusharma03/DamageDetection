@@ -167,8 +167,8 @@
                     formData.append('image', file);
 
                     try {
-                        const response = await fetch('https://lbone-1965897847.us-east-1.elb.amazonaws.com/invocations', {
-                            method: 'POST',
+                        const response = await fetch('http://lbone-1965897847.us-east-1.elb.amazonaws.com/invocations', {
+                            method  : 'POST',
                             body: formData,
                             headers: {
                                 'Content-Type': 'multipart/form-data'
