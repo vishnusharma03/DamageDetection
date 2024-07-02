@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Damage Detection</title>
     <style>
@@ -167,7 +168,7 @@
                     formData.append('image', file);
 
                     try {
-                        const response = await fetch('http://lbone-1965897847.us-east-1.elb.amazonaws.com/invocations', {
+                        const response = await fetch('http://lbone-27244696.us-east-1.elb.amazonaws.com/invocations', {
                             method  : 'POST',
                             body: formData,
                             headers: {
