@@ -5,6 +5,3 @@ This project demonstrates the end-to-end process of training and deploying a mac
 This project demonstrates how to import a custom ML model to AWS & deploy it.
 
 
-## License
-
-Specify the license under which the project is distributed.
