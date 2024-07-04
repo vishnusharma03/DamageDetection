@@ -51,7 +51,7 @@ RUN wget https://www.python.org/ftp/python/3.11.7/Python-3.11.7.tgz && \
 
 
 # Install required Python packages
-RUN pip --no-cache-dir install opencv-python==4.9.0.80 ultralytics flask gunicorn torch torchvision
+RUN pip --no-cache-dir install opencv-python==4.9.0.80 ultralytics flask gunicorn torch torchvision numpy
 # RUN mkdir /datasets
 # Set environment variables
 ENV PYTHONUNBUFFERED=TRUE

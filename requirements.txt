@@ -2,3 +2,5 @@ ultralytics
 opencv-python==4.9.0.80
 flask
 gunicorn
+numpy
+opencv-python

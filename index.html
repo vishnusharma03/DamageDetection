@@ -168,21 +168,35 @@
                     formData.append('image', file);
 
                     try {
-                        const response = await fetch('http://lbone-27244696.us-east-1.elb.amazonaws.com/invocations', {
+                        const response = await fetch('https://damage.vishnusharma.me/invocations', {
                             method  : 'POST',
-                            body: formData,
-                            headers: {
-                                'Content-Type': 'multipart/form-data'
-                            }
+                            body: formData
                         });
 
                         if (response.ok) {
-                            const processedImageBlob = await response.blob();
-                            const processedImageUrl = URL.createObjectURL(processedImageBlob);
-                            processedImageBox.innerHTML = `<img src="${processedImageUrl}" alt="Processed Image">`;
+                            try {
+                                const processedImageBlob = await response.blob();
+                                if (processedImageBlob.size > 0) {
+                                    const processedImageUrl = URL.createObjectURL(processedImageBlob);
+                                    processedImageBox.innerHTML = `<img src="${processedImageUrl}" alt="Processed Image">`;
+                                    console.log('Processed image displayed successfully');
+                                } else {
+                                    console.error('Received empty blob from server');
+                                    alert('Received empty image from server');
+                                }
+                            } catch (error) {
+                                console.error('Error handling processed image:', error);
+                                alert('Error displaying processed image');
+                            }
                         } else {
-                            console.error('Error processing image');
-                            alert('Error processing image');
+                            console.error('Server response not OK:', response.status, response.statusText);
+                            alert(`Error processing image: ${response.status} ${response.statusText}`);
+                            try {
+                                const errorText = await response.text();
+                                console.error('Error response body:', errorText);
+                            } catch (error) {
+                                console.error('Could not read error response body:', error);
+                            }
                         }
                     } catch (error) {
                         console.error('Error:', error);
@@ -195,3 +209,5 @@
     </script>
 </body>
 </html>
+
+
